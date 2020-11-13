@@ -2,12 +2,14 @@
 using Fall2020_CSC403_Project.Properties;
 using System;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Media;
 using System.Windows.Forms;
 
 namespace Fall2020_CSC403_Project {
   public partial class FrmBattle : Form {
     public static FrmBattle instance = null;
+    public FrmAttackMenu atkMenu;
     private Enemy enemy;
     private Player player;
 
@@ -64,11 +66,28 @@ namespace Fall2020_CSC403_Project {
     }
 
     private void btnAttack_Click(object sender, EventArgs e) {
-      player.OnAttack(-4);
-      if (enemy.Health > 0) {
-        enemy.OnAttack(-2);
-      }
 
+        if (!(player.Health <= 0 || enemy.Health <= 0))
+        {
+            atkMenu = FrmAttackMenu.GetInstance(enemy);
+            atkMenu.ShowDialog();
+        }
+
+        // random move selection for enemy
+        Random random = new Random();
+        if (enemy.Health > 0)
+        {
+            float probability = random.Next(0, 1);
+            if(probability > 0.95)
+            {
+                enemy.OnAttack(enemy.Attacks[0].atkVal * -1);
+            }
+            else
+            {
+                enemy.OnAttack(enemy.Attacks[1].atkVal * -1);
+            }
+        }
+        
       UpdateHealthBars();
       if (player.Health <= 0 || enemy.Health <= 0) {
         instance = null;
@@ -76,6 +95,12 @@ namespace Fall2020_CSC403_Project {
       }
     }
 
+    // placeholder EventHandler function for the items button
+    private void btnItems_Click(object sender, EventArgs e)
+    {
+        player.AlterHealth(4);
+        UpdateHealthBars();
+    }
     private void EnemyDamage(int amount) {
       enemy.AlterHealth(amount);
     }
@@ -88,5 +113,10 @@ namespace Fall2020_CSC403_Project {
       picBossBattle.Visible = false;
       tmrFinalBattle.Enabled = false;
     }
-  }
+
+        private void FrmBattle_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
