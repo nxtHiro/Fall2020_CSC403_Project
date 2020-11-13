@@ -10,23 +10,47 @@ namespace Fall2020_CSC403_Project {
     private Enemy enemyPoisonPacket;
     private Enemy bossKoolaid;
     private Enemy enemyCheeto;
+    private AttackItem attackItem;
     private Character[] walls;
 
     private DateTime timeBegin;
     private FrmBattle frmBattle;
-
+    private PictureBox AtkItem;
     public FrmLevel() {
       InitializeComponent();
-    }
+     AtkItem = new System.Windows.Forms.PictureBox();
+      ((System.ComponentModel.ISupportInitialize)(AtkItem)).BeginInit();
+      this.SuspendLayout();
+      // 
+      // AttackSpawn
+      // 
+      Random r = new Random();
+      int spawnX = r.Next(100, 1686);
+      int spawnY = r.Next(100, 1073);
+      AtkItem.BackColor = System.Drawing.Color.Transparent;
+      AtkItem.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.attack_orb;
+      AtkItem.Image = global::Fall2020_CSC403_Project.Properties.Resources.attack_orb;
+      AtkItem.Location = new System.Drawing.Point(spawnX, spawnY);
+      AtkItem.Name = "AtkItem";
+      AtkItem.TabStop = false;
+      AtkItem.Size = new System.Drawing.Size(80, 100);
+      AtkItem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+      AtkItem.TabIndex = 18;
+      ((System.ComponentModel.ISupportInitialize)(AtkItem)).EndInit();
+      this.Controls.Add(AtkItem);
+      this.ResumeLayout(false);
+      this.PerformLayout();
+        }
 
     private void FrmLevel_Load(object sender, EventArgs e) {
       const int PADDING = 7;
       const int NUM_WALLS = 13;
-
+      
       player = new Player(CreatePosition(picPlayer), CreateCollider(picPlayer, PADDING));
       bossKoolaid = new Enemy(CreatePosition(picBossKoolAid), CreateCollider(picBossKoolAid, PADDING));
       enemyPoisonPacket = new Enemy(CreatePosition(picEnemyPoisonPacket), CreateCollider(picEnemyPoisonPacket, PADDING));
       enemyCheeto = new Enemy(CreatePosition(picEnemyCheeto), CreateCollider(picEnemyCheeto, PADDING));
+      attackItem = new AttackItem(CreatePosition(AtkItem), CreateCollider(AtkItem, PADDING));
 
       bossKoolaid.Img = picBossKoolAid.BackgroundImage;
       enemyPoisonPacket.Img = picEnemyPoisonPacket.BackgroundImage;
@@ -85,6 +109,11 @@ namespace Fall2020_CSC403_Project {
         Fight(bossKoolaid);
       }
 
+      if (HitAnItem(player, attackItem))
+      {
+        attackItem.addAttack(player);
+      }
+
       // update player's picture box
       picPlayer.Location = new Point((int)player.Position.x, (int)player.Position.y);
     }
@@ -102,6 +131,11 @@ namespace Fall2020_CSC403_Project {
 
     private bool HitAChar(Character you, Character other) {
       return you.Collider.Intersects(other.Collider);
+    }
+
+    private bool HitAnItem(Character you, Item i)
+    {
+           return you.Collider.Intersects(i.Collider);
     }
 
     private void Fight(Enemy enemy) {
