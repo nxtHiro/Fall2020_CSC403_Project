@@ -34,6 +34,8 @@
             this.picEnemy = new System.Windows.Forms.PictureBox();
             this.picPlayer = new System.Windows.Forms.PictureBox();
             this.tmrFinalBattle = new System.Windows.Forms.Timer(this.components);
+            this.textboxBattlePlayer = new System.Windows.Forms.TextBox();
+            this.textboxBattleEnemy = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picBossBattle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEnemy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPlayer)).BeginInit();
@@ -116,6 +118,28 @@
             this.picBossBattle.TabStop = false;
             this.picBossBattle.Visible = false;
             // 
+            // player textbox
+            // 
+            this.textboxBattlePlayer.BackColor = System.Drawing.Color.White;
+            this.textboxBattlePlayer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.textboxBattlePlayer.Location = new System.Drawing.Point(231, 1080);
+            this.textboxBattlePlayer.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.textboxBattlePlayer.Name = "textboxBattlePlayer";
+            this.textboxBattlePlayer.Size = new System.Drawing.Size(458, 44);
+            this.textboxBattlePlayer.TabIndex = 8;
+            this.textboxBattlePlayer.Enabled = false;
+            // 
+            // enemy textbox
+            // 
+            this.textboxBattleEnemy.BackColor = System.Drawing.Color.White;
+            this.textboxBattleEnemy.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.textboxBattleEnemy.Location = new System.Drawing.Point(1030, 1080);
+            this.textboxBattleEnemy.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.textboxBattleEnemy.Name = "textboxBattlePlayer";
+            this.textboxBattleEnemy.Size = new System.Drawing.Size(458, 44);
+            this.textboxBattleEnemy.TabIndex = 8;
+            this.textboxBattleEnemy.Enabled = false;
+            // 
             // picEnemy
             // 
             this.picEnemy.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -163,6 +187,8 @@
             this.Controls.Add(this.btnItems);
             this.Controls.Add(this.picEnemy);
             this.Controls.Add(this.picPlayer);
+            this.Controls.Add(this.textboxBattlePlayer);
+            this.Controls.Add(this.textboxBattleEnemy);
             this.DoubleBuffered = true;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "FrmBattle";
@@ -173,8 +199,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picEnemy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPlayer)).EndInit();
             this.ResumeLayout(false);
-
-    }
+            
+        }
 
     #endregion
 
@@ -188,5 +214,7 @@
     private System.Windows.Forms.Label lblEnemyHealthFull;
     private System.Windows.Forms.PictureBox picBossBattle;
     private System.Windows.Forms.Timer tmrFinalBattle;
+    private System.Windows.Forms.TextBox textboxBattlePlayer;
+    private System.Windows.Forms.TextBox textboxBattleEnemy;
   }
 }

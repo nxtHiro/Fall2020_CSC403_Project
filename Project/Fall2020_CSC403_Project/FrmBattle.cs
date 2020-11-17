@@ -93,6 +93,17 @@ namespace Fall2020_CSC403_Project {
         instance = null;
         Close();
       }
+
+      // adding random dialogue to the Battle using the textboxes
+      Random random1 = new Random();
+      Random random2 = new Random();
+      string[] playerResponses = new string[5] { "Take that", "I've got you now", "Ha. Weakling.", "You're going down", "What's the matter? Can't take a hit?" };
+      string[] enemyResponses = new string[5] { "Please, have mercy", "No. Stop.", "Ah", "Oh no", "How could you do this?" };
+
+      int playerResponse = random1.Next(0, 5);
+      int enemyReponse = random2.Next(0, 5);
+      textboxBattleEnemy.Text = enemyResponses[enemyReponse];      
+      textboxBattlePlayer.Text = playerResponses[playerResponse];
     }
 
     // placeholder EventHandler function for the items button
