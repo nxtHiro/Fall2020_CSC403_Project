@@ -2,6 +2,8 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Input;
+using KeyEventArgs = System.Windows.Forms.KeyEventArgs;
 
 namespace Fall2020_CSC403_Project {
   public partial class FrmLevel : Form {
@@ -149,28 +151,26 @@ namespace Fall2020_CSC403_Project {
       }
     }
 
+    //This function handles the win forms Keyboard evente. Effectively any time a key is pressed this function gets called
+    //the way win forms handles events only the state of the key that is pressed gets sent tothe function. So we call another
+    //newer, way cooler library that definately didnt take 3 hours to get working: System.Windows.Input from WPF. This library
+    //gives the current state of the keyboard and lets us check the state of indiviual keys.
     private void FrmLevel_KeyDown(object sender, KeyEventArgs e) {
-      switch (e.KeyCode) {
-        case Keys.Left:
-          player.GoLeft();
-          break;
+      if (Keyboard.IsKeyDown(Key.Up)) {
+        player.GoUp();
+      }
 
-        case Keys.Right:
-          player.GoRight();
-          CheckKonamiStatus();
-          break;
+      if (Keyboard.IsKeyDown(Key.Down)) {
+        player.GoDown();
+      }
 
-        case Keys.Up:
-          player.GoUp();
-          break;
+      if (Keyboard.IsKeyDown(Key.Left)) {
+         player.GoLeft();
+      }
 
-        case Keys.Down:
-          player.GoDown();
-          break;
-
-        default:
-          player.ResetMoveSpeed();
-          break;
+      if (Keyboard.IsKeyDown(Key.Right)) {
+        player.GoRight();
+        CheckKonamiStatus();
       }
     }
 
