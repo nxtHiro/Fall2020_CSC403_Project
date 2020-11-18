@@ -30,20 +30,22 @@ namespace Fall2020_CSC403_Project.code {
       Position = LastPosition;
     }
 
+    //These movement functions update the velocity vectors of the player class
     public void GoLeft() {
-      MoveSpeed = new Vector2(-GO_INC, 0);
+      MoveSpeed = new Vector2(-GO_INC, MoveSpeed.y);
       AddMoveToHistory("left");
     }
     public void GoRight() {
-      MoveSpeed = new Vector2(+GO_INC, 0);
+      MoveSpeed = new Vector2(+GO_INC, MoveSpeed.y);
       AddMoveToHistory("right");
     }
     public void GoUp() {
-      MoveSpeed = new Vector2(0, -GO_INC);
+      MoveSpeed = new Vector2(MoveSpeed.x, -GO_INC);
       AddMoveToHistory("up");
     }
+
     public void GoDown() {
-      MoveSpeed = new Vector2(0, +GO_INC);
+      MoveSpeed = new Vector2(MoveSpeed.x, +GO_INC);
       AddMoveToHistory("down");
      }
     public void AddMoveToHistory(String direction) {
