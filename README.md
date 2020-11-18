@@ -2,4 +2,4 @@
 
 Titled Balrog's Quest, this is an RPS game developed by Caitlin Burke, Marco Flores, Lewis Johnson, and Rue Phillips.
 
-[Documentation](docs.flores.sh)
+[Documentation](http://docs.flores.sh)
