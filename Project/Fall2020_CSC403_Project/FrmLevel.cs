@@ -91,34 +91,88 @@ namespace Fall2020_CSC403_Project {
       lblInGameTime.Text = "Time: " + time.ToString();
     }
 
-    private void tmrPlayerMove_Tick(object sender, EventArgs e) {
-      // move player
-      player.Move();
+        private void tmrPlayerMove_Tick(object sender, EventArgs e) {
+            // move player
+            player.Move();
 
-      // check collision with walls
-      if (HitAWall(player)) {
-        player.MoveBack();
-      }
+            // check collision with walls
+            if (HitAWall(player)) {
+                player.MoveBack();
+            }
 
-      // check collision with enemies
-      if (HitAChar(player, enemyPoisonPacket)) {
-        Fight(enemyPoisonPacket);
-      }
-      else if (HitAChar(player, enemyCheeto)) {
-        Fight(enemyCheeto);
-      }
-      if (HitAChar(player, bossKoolaid)) {
-        Fight(bossKoolaid);
-      }
+            // check collision with enemies
+            if (HitAChar(player, enemyPoisonPacket)) {
+                Fight(enemyPoisonPacket);
+            }
+            else if (HitAChar(player, enemyCheeto)) {
+                Fight(enemyCheeto);
+            }
+            if (HitAChar(player, bossKoolaid)) {
+                Fight(bossKoolaid);
+            }
 
-      if (HitAnItem(player, attackItem))
-      {
-        attackItem.addAttack(player);
-      }
+            if (HitAnItem(player, attackItem))
+            {
+                attackItem.addAttack(player);
+            }
 
-      // update player's picture box
-      picPlayer.Location = new Point((int)player.Position.x, (int)player.Position.y);
-    }
+            // update player's picture box
+            picPlayer.Location = new Point((int)player.Position.x, (int)player.Position.y);
+
+            //move enemy if enemy state is following or in motion
+            enemyCheeto.updateState(player.Position);
+            if (enemyCheeto.state == 2 || enemyCheeto.state == 1) {
+                enemyCheeto.ResetMoveSpeed();
+                if (enemyCheeto.xVel == 1) {
+                    enemyCheeto.GoRight();
+                } else if (enemyCheeto.xVel == -1){
+                    enemyCheeto.GoLeft();
+                }
+                if (enemyCheeto.yVel == 1)
+                {
+                    enemyCheeto.GoUp();
+                }else if (enemyCheeto.yVel == -1 )
+                {
+                    enemyCheeto.GoDown();
+                }
+                if (HitAWall(enemyCheeto))
+                {
+                    enemyCheeto.MoveBack();
+                }
+                enemyCheeto.Move();
+                //update the enemy graphic
+                picEnemyCheeto.Location = new Point((int)enemyCheeto.Position.x, (int)enemyCheeto.Position.y);
+            }
+
+            enemyPoisonPacket.updateState(player.Position);
+            if (enemyPoisonPacket.state == 2 || enemyPoisonPacket.state == 1)
+            {
+                enemyPoisonPacket.ResetMoveSpeed();
+                if (enemyPoisonPacket.xVel == 1)
+                {
+                    enemyPoisonPacket.GoRight();
+                }
+                else if (enemyPoisonPacket.xVel == -1)
+                {
+                    enemyPoisonPacket.GoLeft();
+                }
+                if (enemyPoisonPacket.yVel == 1)
+                {
+                    enemyPoisonPacket.GoUp();
+                }
+                else if (enemyPoisonPacket.yVel == -1)
+                {
+                    enemyPoisonPacket.GoDown();
+                }
+                if (HitAWall(enemyPoisonPacket))
+                {
+                    enemyPoisonPacket.MoveBack();
+                }
+                enemyPoisonPacket.Move();
+                //update the enemy graphic
+                picEnemyPoisonPacket.Location = new Point((int)enemyPoisonPacket.Position.x, (int)enemyPoisonPacket.Position.y);
+            }
+        }
 
     private bool HitAWall(Character c) {
       bool hitAWall = false;
