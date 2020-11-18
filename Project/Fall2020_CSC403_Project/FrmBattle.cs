@@ -93,6 +93,15 @@ namespace Fall2020_CSC403_Project {
         instance = null;
         Close();
       }
+
+      // adding random dialogue to the Battle using the textboxes
+      Random random1 = new Random();
+      
+      int playerResponse = random1.Next(0, 5);
+      int enemyReponse = random1.Next(0, 5);
+
+      textboxBattleEnemy.Text = Enemy.enemyResponses[enemyReponse]; 
+      textboxBattlePlayer.Text = Player.playerResponses[playerResponse];
     }
 
     // placeholder EventHandler function for the items button
