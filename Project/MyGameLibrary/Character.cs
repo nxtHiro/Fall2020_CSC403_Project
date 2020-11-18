@@ -14,6 +14,7 @@ namespace Fall2020_CSC403_Project.code {
     public Collider Collider { get; private set; }
     public List<Attack> Attacks = new System.Collections.Generic.List<Attack>();
     public Queue<String> MoveHistory = new Queue<String>();
+    public List<Attack> Attacks = new System.Collections.Generic.List<Attack>();
 
     public Character(Vector2 initPos, Collider collider) {
       Position = initPos;
