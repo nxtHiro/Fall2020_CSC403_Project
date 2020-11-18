@@ -157,6 +157,7 @@ namespace Fall2020_CSC403_Project {
 
         case Keys.Right:
           player.GoRight();
+          CheckKonamiStatus();
           break;
 
         case Keys.Up:
@@ -175,6 +176,11 @@ namespace Fall2020_CSC403_Project {
 
     private void lblInGameTime_Click(object sender, EventArgs e) {
 
+    }
+    private void CheckKonamiStatus() {
+        if (string.Join(" ", player.MoveHistory.ToArray()).Equals(string.Join(" ", new String[] { "up", "up", "down", "down", "left", "right", "left", "right" }))){
+            player.Attacks.Add(new Attack("Hadouken", 2, 20));
+       }
     }
   }
 }
