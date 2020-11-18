@@ -14,7 +14,7 @@ namespace Fall2020_CSC403_Project.code {
 
     public event Action<int> AttackEvent;
 
-    public string[] responses = new string[5];
+    public static string[] responses = new string[10] { "Take that", "I've got you now", "Ha. Weakling.", "You're going down", "What's the matter? Can't take a hit?", "Please, have mercy", "No. Stop.", "Ah", "Oh no", "How could you do this?"};
 
     public BattleCharacter(Vector2 initPos, Collider collider) : base(initPos, collider) {
       MaxHealth = 20;

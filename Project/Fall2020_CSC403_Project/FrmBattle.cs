@@ -98,10 +98,10 @@ namespace Fall2020_CSC403_Project {
       Random random1 = new Random();
       
       int playerResponse = random1.Next(0, 5);
-      int enemyReponse = random1.Next(0, 5);
+      int enemyReponse = random1.Next(6, 10);
 
-      textboxBattleEnemy.Text = Enemy.enemyResponses[enemyReponse]; 
-      textboxBattlePlayer.Text = Player.playerResponses[playerResponse];
+      textboxBattleEnemy.Text = BattleCharacter.responses[enemyReponse]; 
+      textboxBattlePlayer.Text = BattleCharacter.responses[playerResponse];
     }
 
     // placeholder EventHandler function for the items button

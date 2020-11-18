@@ -23,7 +23,6 @@ namespace Fall2020_CSC403_Project.code {
     public Enemy(Vector2 initPos, Collider collider) : base(initPos, collider) {
         Attacks.Add(new Attack("Burst", 2, 5));
         Attacks.Add(new Attack("Bite", 1, 2));
-        responses = new string[5] { "Please, have mercy", "No. Stop.", "Ah", "Oh no", "How could you do this?" };
         }
   }
 }
